@@ -573,6 +573,19 @@
         document.addEventListener('DOMContentLoaded', function() {
             feather.replace();
             
+            // Smooth scroll for navbar links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    const targetId = this.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        event.preventDefault();
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
             // Add animation classes to gallery items
             const galleryItems = document.querySelectorAll('#gallery .group');
             galleryItems.forEach((item, index) => {
